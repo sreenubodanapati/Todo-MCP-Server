@@ -178,27 +178,23 @@ To use this server with an MCP client, add it to your client's configuration. Fo
 
 ## Testing
 
-To test the functionality without running the MCP server:
-
-```bash
-python test_todo.py
-```
-
-This will demonstrate all the todo management features with sample data.
+You can test the functionality using any MCP client by connecting to the server and calling the available tools. The server provides comprehensive todo management capabilities that can be tested interactively.
 
 ## Project Structure
 
 ```
 Todo-mcp-server/
 ├── main.py                    # Main MCP server implementation
-├── test_todo.py              # Test script demonstrating functionality
 ├── requirements.txt          # Python dependencies
 ├── pyproject.toml           # Project configuration
+├── uv.lock                  # UV dependency lock file
 ├── README.md                # This documentation
 ├── DEPLOYMENT.md            # Comprehensive deployment guide
 ├── Dockerfile               # Docker container configuration
 ├── docker-compose.yml       # Docker Compose setup
 ├── .dockerignore           # Docker build exclusions
+├── .gitignore              # Git ignore patterns
+├── .python-version         # Python version specification
 ├── .env.example            # Environment configuration template
 ├── .env.development        # Development environment settings
 ├── .env.production         # Production environment settings
@@ -208,6 +204,8 @@ Todo-mcp-server/
 ├── stop-docker.bat         # Windows Docker stop script
 ├── todos.json              # Data storage (created automatically)
 ├── todo_server.log         # Application logs (created automatically)
+├── .vscode/                # VS Code configuration
+│   └── mcp.json            # MCP server configuration for VS Code
 └── configs/                # Client configuration examples
     ├── claude-desktop.json           # Claude Desktop (local Python)
     ├── claude-desktop-docker.json    # Claude Desktop (Docker)
@@ -434,14 +432,14 @@ python main.py
 
 ### Testing
 ```bash
-# Run functionality tests
-python test_todo.py
-
 # Test Docker build
 docker-compose build
 
 # Test health check
 docker-compose exec todo-mcp-server python -c "from main import health_check; print(health_check())"
+
+# Test server functionality through MCP client
+# Use any MCP client to connect and test the available tools
 ```
 
 ## Architecture
