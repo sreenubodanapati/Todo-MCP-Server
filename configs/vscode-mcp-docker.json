@@ -1,0 +1,29 @@
+{
+  "mcp": {
+    "servers": [
+      {
+        "name": "todo-server-docker",
+        "description": "Todo list management server (Docker)",
+        "command": {
+          "type": "stdio",
+          "program": "docker",
+          "args": [
+            "run",
+            "--rm",
+            "-i",
+            "-v",
+            "todo_data:/data",
+            "-v",
+            "todo_logs:/app/logs",
+            "todo-mcp-server"
+          ]
+        },
+        "capabilities": {
+          "tools": true,
+          "resources": false,
+          "prompts": false
+        }
+      }
+    ]
+  }
+}
