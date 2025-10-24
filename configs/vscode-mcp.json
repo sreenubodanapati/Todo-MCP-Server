@@ -1,0 +1,26 @@
+{
+  "mcp": {
+    "servers": [
+      {
+        "name": "todo-server",
+        "description": "Todo list management server",
+        "command": {
+          "type": "stdio",
+          "program": "python",
+          "args": ["main.py"],
+          "cwd": "${workspaceFolder}/Todo-mcp-server",
+          "env": {
+            "TODO_FILE": "${workspaceFolder}/Todo-mcp-server/todos.json",
+            "LOG_LEVEL": "DEBUG",
+            "MAX_TODOS": "1000"
+          }
+        },
+        "capabilities": {
+          "tools": true,
+          "resources": false,
+          "prompts": false
+        }
+      }
+    ]
+  }
+}

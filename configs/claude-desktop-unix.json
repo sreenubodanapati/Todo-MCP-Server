@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "todo-server": {
+      "command": "python",
+      "args": ["main.py"],
+      "cwd": "/path/to/Todo-mcp-server",
+      "env": {
+        "TODO_FILE": "todos.json",
+        "LOG_LEVEL": "INFO",
+        "MAX_TODOS": "1000"
+      }
+    }
+  }
+}

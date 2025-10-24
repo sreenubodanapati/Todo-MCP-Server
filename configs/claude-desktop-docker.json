@@ -1,0 +1,18 @@
+{
+  "mcpServers": {
+    "todo-server": {
+      "command": "docker",
+      "args": [
+        "run",
+        "--rm",
+        "-i",
+        "-v",
+        "todo_data:/data",
+        "-v",
+        "todo_logs:/app/logs",
+        "todo-mcp-server"
+      ],
+      "env": {}
+    }
+  }
+}
