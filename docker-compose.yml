@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  todo-mcp-server:
+    build: .
+    container_name: todo-mcp-server
+    restart: unless-stopped
+    environment:
+      - TODO_FILE=/data/todos.json
+      - LOG_LEVEL=INFO
+      - MAX_TODOS=10000
+      - MAX_TITLE_LENGTH=200
+      - MAX_DESCRIPTION_LENGTH=1000
+    volumes:
+      - todo_data:/data
+      - todo_logs:/app/logs
+    stdin_open: true
+    tty: true
+    # For MCP protocol over STDIO
+    networks:
+      - todo_network
+    healthcheck:
+      test: ["CMD", "/app/healthcheck.sh"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Optional: Add a reverse proxy for HTTP access (future extension)
+  # nginx:
+  #   image: nginx:alpine
+  #   container_name: todo-mcp-proxy
+  #   restart: unless-stopped
+  #   ports:
+  #     - "8080:80"
+  #   volumes:
+  #     - ./nginx.conf:/etc/nginx/conf.d/default.conf
+  #   depends_on:
+  #     - todo-mcp-server
+  #   networks:
+  #     - todo_network
+
+volumes:
+  todo_data:
+    driver: local
+  todo_logs:
+    driver: local
+
+networks:
+  todo_network:
+    driver: bridge
